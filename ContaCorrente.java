@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 public class ContaCorrente extends Conta{
 	static double saldo_corrente;
+        public static double valor = 0;
 
 	Banco_Frame frame = new Banco_Frame();
 	
@@ -24,7 +25,7 @@ public class ContaCorrente extends Conta{
 	//Funcao para saque
 	public static double saque(double saldo_corrente) {
 		if(saldo_corrente > 0) {
-			double valor = 0;
+			
 			String aux;
                         Banco_Frame.play("ValorSaque");
 			aux = JOptionPane.showInputDialog(null, "Valor de Saque: ");
@@ -63,7 +64,7 @@ public class ContaCorrente extends Conta{
 	//Função para exibir o saldo da conta corrente
 	public static void saldo() {
             Banco_Frame.play("saldoInformacao");
-            System.out.println("Saldo: " + ContaCorrente.saldo_corrente);
+            System.out.println("Saldo Corrente: " + ContaCorrente.saldo_corrente);
 	}
         
         //Função para exibir o extrato da conta corrente
