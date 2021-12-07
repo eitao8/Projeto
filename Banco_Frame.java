@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author mauro
+ * @author eiti
  */
 public class Banco_Frame extends javax.swing.JFrame {
 
