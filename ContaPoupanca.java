@@ -2,7 +2,6 @@ package banco;
 
 import static banco.ContaCorrente.transacoes;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
 
 public class ContaPoupanca {
 	private String nome;
@@ -20,14 +19,16 @@ public class ContaPoupanca {
                     double valor;
 			valor = ContaCorrente.valor;
 			if(valor > saldo_corrente) {
-				return saldo_corrente;
+                            System.out.println("Saldo Insuficiente na Conta Poupanca");
+                            return saldo_corrente;
 			}else {
-				saldo_corrente = saldo_corrente - valor;
-				transacoes.add("Saque: -" + valor);
-				return saldo_corrente;                   
+                            saldo_corrente = saldo_corrente - valor;
+                            transacoes.add("Saque: -" + valor);
+                            return saldo_corrente;                   
 			}
 		}else {
 			//Menssagem de Não possui saldo
+                        System.out.println("Saldo Zerado na Conta Poupanca");
 			return saldo_corrente;
 		}
 	}
