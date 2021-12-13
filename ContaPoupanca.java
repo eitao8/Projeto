@@ -1,6 +1,5 @@
-package banco;
+package Bancasso;
 
-import static banco.ContaCorrente.transacoes;
 import java.util.Scanner;
 
 public class ContaPoupanca {
@@ -19,16 +18,19 @@ public class ContaPoupanca {
                     double valor;
 			valor = ContaCorrente.valor;
 			if(valor > saldo_corrente) {
-                            System.out.println("Saldo Insuficiente na Conta Poupanca");
-                            return saldo_corrente;
-			}else {
-                            saldo_corrente = saldo_corrente - valor;
-                            transacoes.add("Saque: -" + valor);
-                            return saldo_corrente;                   
+                System.out.println("Saldo Insuficiente na Conta Poupanca");
+                return saldo_corrente;
+			}else if(valor < 0){
+				System.out.println("Impossivel Saque Negativo");
+				return saldo_corrente;
+			} else {
+                saldo_corrente = saldo_corrente - valor;
+                ContaCorrente.transacoes.add("Saque: -" + valor);
+                return saldo_corrente;                   
 			}
 		}else {
-			//Menssagem de Não possui saldo
-                        System.out.println("Saldo Zerado na Conta Poupanca");
+			//Menssagem de NÃo possui saldo
+                        //System.out.println("Saldo Zerado na Conta Poupanca");
 			return saldo_corrente;
 		}
 	}
@@ -38,7 +40,7 @@ public class ContaPoupanca {
 		double valor;
                 valor = ContaCorrente.valor;
 		saldo_corrente = saldo_corrente + valor;
-		transacoes.add("Deposito: +" + valor);
+		//transacoes.add("Deposito: +" + valor);
 		return saldo_corrente;
 	}
 		
