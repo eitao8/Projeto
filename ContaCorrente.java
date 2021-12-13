@@ -1,4 +1,4 @@
-package banco;
+package Bancasso;
 
 import java.util.*;
 
@@ -32,17 +32,21 @@ public class ContaCorrente extends Conta{
 			valor = Double.parseDouble(aux);
 			if(valor > saldo_corrente) {
 				//Mensagem de saldo insuficiente
-                                Banco_Frame.play("saldoInsuficiente");
+                Banco_Frame.play("saldoInsuficiente");
 				JOptionPane.showMessageDialog(null, "Saldo Insuficiente", "CAIXA NADA ECONOMICO", JOptionPane.CANCEL_OPTION); 
 				return saldo_corrente;
-			}else {
+			} else if (valor < 0){
+				 Banco_Frame.play("SaqueNegativo");
+				 JOptionPane.showMessageDialog(null, "Saque Negativo", "CAIXA NADA ECONOMICO", JOptionPane.CANCEL_OPTION); 
+				return saldo_corrente; 
+			} else {
 				saldo_corrente = saldo_corrente - valor;
 				transacoes.add("Saque: -" + valor);
                                 Banco_Frame.play("ValorSacado");
 				return saldo_corrente;                   
 			}
 		}else {
-			//Menssagem de Não possui saldo
+			//Menssagem de NÃo possui saldo
                         Banco_Frame.play("saldoZerado");
 			return saldo_corrente;
 		}
@@ -55,10 +59,15 @@ public class ContaCorrente extends Conta{
                 Banco_Frame.play("valorDeposito");
 		aux = JOptionPane.showInputDialog(null, "Valor de Deposito: ");
 		valor = Double.parseDouble(aux);
-		saldo_corrente = saldo_corrente + valor;
-		transacoes.add("Deposito: +" + valor);
-                Banco_Frame.play("depositoSucesso");
-		return saldo_corrente;
+		if (valor < 0) {
+			System.out.println("Impossivel depoisito negativo");
+			return saldo_corrente;
+		} else {
+			saldo_corrente = saldo_corrente + valor;
+			transacoes.add("Deposito: +" + valor);
+	                Banco_Frame.play("depositoSucesso");
+			return saldo_corrente;
+		}
 	}
 	
 	//Função para exibir o saldo da conta corrente
